@@ -14,7 +14,7 @@ return {
       disable_float_background = false,
       disable_italics = true,
 
-    --- @usage string hex value or named color from rosepinetheme.com/palette
+      -- @usage string hex value or named color from rosepinetheme.com/palette
       groups = {
         background = "base",
         background_nc = "_experimental_nc",
@@ -26,7 +26,7 @@ return {
         punctuation = "subtle",
         error = "love",
         hint = "iris",
-        info = "foam",  
+        info = "foam",
         warn = "gold",
         headings = {
           h1 = "iris",

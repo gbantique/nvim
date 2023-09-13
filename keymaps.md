@@ -183,6 +183,7 @@ t = {
   u = { "<cmd>lua _NCDU_TOGGLE()<CR>", "NCDU" },
   t = { "<cmd>lua _HTOP_TOGGLE()<CR>", "Htop" },
   p = { "<cmd>lua _PYTHON_TOGGLE()<CR>", "Python" },
+  l = { "<cmd>lua _LUA_TOGGLE()<CR>", "Lua" },
   f = { "<cmd>ToggleTerm direction=float<CR>", "Float" },
   h = { "<cmd>ToggleTerm size=10 direction=horizontal<CR>", "Horizontal" },
   v = { "<cmd>ToggleTerm size=80 direction=vertical<CR>", "Vertical" },

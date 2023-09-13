@@ -11,6 +11,42 @@ local keymap = vim.keymap.set
 --   visual_block_mode = "x",
 --   term_mode = "t",
 --   command_mode = "c",
+----------------------- Personal Keymaps -------------------------------------
+-- Save file by CTRL-S
+keymap("n", "<C-s>", ":w<CR>", { silent = true, desc = "save file" })
+keymap("i", "<C-s>", "<ESC> :w<CR>", { silent = true, desc = "exit insert and save" })
+
+-- Save all and quit by Ctrl-q
+keymap("n", "<C-q>", ":wqa<CR>", { silent = true, desc = "save and quit" })
+keymap({ "i", "v", "x" }, "<C-q>", "<ESC> :wqa<CR>", { silent = true, desc = "escape and quit" })
+
+-- Close buffer by Ctrl-x
+keymap(
+  "n",
+  "<C-x>",
+  "<cmd>w!<CR> <cmd>bp<bar>sp<bar>bn<bar>bd<CR>",
+  { silent = true, desc = "save and close buffer" }
+)
+keymap(
+  "i",
+  "<C-x>",
+  "<ESC> <cmd>w!<CR> <cmd>bp<bar>sp<bar>bn<bar>bd<CR>",
+  { silent = true, desc = "force save close buffer" }
+)
+
+-- Clear highlights
+keymap("n", "<esc>", "<cmd>noh<cr>", { silent = true, desc = "esc to clear highlights" })
+keymap("n", "<leader>h", vim.cmd.nohlsearch, { silent = true, desc = "clear highlights" })
+
+-- Better paste
+keymap("v", "p", '"_dP', { silent = true, desc = "paste in visual mode" })
+keymap("n", "x", '"_x', { silent = true, desc = "paste in normal mode" })
+keymap("n", "X", '"_X', { silent = true, desc = "paste in normal mode" })
+
+-- Press jk fast to exit insert mode 
+keymap("i", "jk", "<ESC>", { silent = true, desc = "exit insert mode" })
+keymap("i", "kj", "<ESC>", { silent = true, desc = "exit insert mode" })
+
 
 ------------------------ Normal Mode -----------------------------------------
 -- Debug
@@ -68,7 +104,7 @@ keymap("n", "'", "`", { silent = true })
 keymap("n", "`", "@a", { silent = true })
 
 -- Find text in file
-keymap("n", "<C-s>", "<cmd>lua require('telescope.builtin').live_grep(require('telescope.themes').get_dropdown({}))<CR>", { silent = true, desc = "search" })
+--[[ keymap("n", "<C-s>", "<cmd>lua require('telescope.builtin').live_grep(require('telescope.themes').get_dropdown({}))<CR>", { silent = true, desc = "search" }) ]]
 
 -- Copy and paste
 keymap("n", "<C-y>", "<esc>:%y+<CR>", { silent = true });
@@ -193,6 +229,7 @@ keymap("n", "<leader>tn", "<cmd>lua _NODE_TOGGLE()<CR>", { desc = "Node" })
 keymap("n", "<leader>tu", "<cmd>lua _NCDU_TOGGLE()<CR>", { desc = "NCDU" })
 keymap("n", "<leader>tt", "<cmd>lua _HTOP_TOGGLE()<CR>", { desc = "Htop" })
 keymap("n", "<leader>tp", "<cmd>lua _PYTHON_TOGGLE()<CR>", { desc = "Python" })
+keymap("n", "<leader>tl", "<cmd>lua _LUA_TOGGLE()<CR>", { desc = "Lua" })
 keymap("n", "<leader>tf", "<cmd>ToggleTerm direction=float<CR>", { desc = "Float" })
 keymap("n", "<leader>th", "<cmd>ToggleTerm size=10 direction=horizontal<CR>", { desc = "Horizontal" })
 keymap("n", "<leader>tv", "<cmd>ToggleTerm size=80 direction=vertical<CR>", { desc = "Vertical" })

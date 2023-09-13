@@ -56,5 +56,11 @@ return {
     function _PYTHON_TOGGLE()
       python:toggle()
     end
+    
+    local lua = Terminal:new({ cmd = "lua", hidden = true })
+
+    function _LUA_TOGGLE()
+      lua:toggle()
+    end
   end
 }

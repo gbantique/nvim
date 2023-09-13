@@ -12,6 +12,7 @@ M.all_servers = {
   --[[ "texlab", ]]
   "angularls",
   "eslint",
+  --[[ "emmet-ls", ]]
   "cmake"
 }
 
@@ -23,6 +24,7 @@ M.regular_servers = {
   --[[ "texlab", ]]
   "angularls",
   "eslint",
+  --[[ "emmet-ls", ]]
   "cmake"
 }
 
