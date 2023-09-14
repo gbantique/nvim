@@ -4,3 +4,4 @@ x.valueOf();
 
 console.log(x);
 
+let str = "Hello, World";
