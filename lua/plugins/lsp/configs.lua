@@ -20,7 +20,8 @@ lspconfig.emmet_ls.setup({
     "svelte",
     "pug",
     "typescriptreact",
-    "vue" 
+    "vue",
+    "php",
   },
   init_options = {
     html = {

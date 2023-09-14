@@ -7,6 +7,7 @@ return {
       mode = "term",
       startinsert = true,
       filetype = {
+        lua = "lua $fileName",
         java = "cd $dir && javac $fileName && java $fileNameWithoutExt",
         python = "python3 -u",
         typescript = "deno run",

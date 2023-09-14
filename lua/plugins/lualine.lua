@@ -78,11 +78,40 @@ return {
 
     colors = colors.nightfly;
 
+    local get_lsp = function()
+      -- From Nvchad
+      if rawget(vim, "lsp") then
+        for _, client in ipairs(vim.lsp.get_active_clients()) do
+          if client.attached_buffers[vim.api.nvim_get_current_buf()] then
+            return (vim.o.columns > 100 and "  LSP: " .. client.name .. "  ") or "  LSP  "
+          end
+        end
+      end
+    end
+    
+
+    local clients_lsp = function()
+      local bufnr = vim.api.nvim_get_current_buf()
+
+      local clients = vim.lsp.buf_get_clients(bufnr)
+      if next(clients) == nil then
+        return ""
+      end
+
+      local c = {}
+      for _, client in pairs(clients) do
+        table.insert(c, client.name)
+      end
+      return "\u{f085} " .. table.concat(c, "|")
+    end
+
     local config = {
       options = {
         icons_enabled = true,
-        component_separators = "",
-        section_separators = "",
+        --component_separators = "",
+        --section_separators = "",
+        component_separators = { left = "", right = "" },
+        section_separators = { left = "", right = "" },
         disabled_filetypes = {
           statusline = {},
           winbar = {},
@@ -92,31 +121,23 @@ return {
           "Outline"
         },
         always_divide_middle = true,
-        theme = {
-          -- We are going to use lualine_c an lualine_x as left and
-          -- right section. Both are highlighted by c theme .  So we
-          -- are just setting default looks o statusline
-          normal = { c = { fg = colors.fg, bg = colors.bg } },
-          inactive = { c = { fg = colors.fg, bg = colors.bg } },
-        },
+        theme = "auto",
       },
       sections = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_y = {},
-        lualine_z = {},
-        -- c for left
-        lualine_c = {},
-        -- x for right
-        lualine_x = {},
+        lualine_a = { "mode" },
+        lualine_b = { "branch", "diff", "diagnostics" },
+        lualine_c = { "filename", get_lsp },
+        lualine_x = { "encoding", "fileformat", "filetype" },
+        lualine_y = { "progress" },
+        lualine_z = { "location" }
       },
       inactive_sections = {
         lualine_a = {},
         lualine_b = {},
-        lualine_y = {},
-        lualine_z = {},
         lualine_c = { "filename" },
         lualine_x = { "location" },
+        lualine_y = {},
+        lualine_z = {}
       },
       tabline = {},
       extensions = {},
@@ -202,12 +223,12 @@ return {
 
     -- Inserts a component in lualine_c at left section
     local function ins_left(component)
-      table.insert(config.sections.lualine_c, component)
+      --table.insert(config.sections.lualine_c, component)
     end
 
     -- Inserts a component in lualine_x ot right section
     local function ins_right(component)
-      table.insert(config.sections.lualine_x, component)
+      --table.insert(config.sections.lualine_x, component)
     end
 
     ins_left {
