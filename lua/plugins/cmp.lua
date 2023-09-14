@@ -116,14 +116,26 @@ return {
         behavior = cmp.ConfirmBehavior.Replace,
         select = false,
       },
+      --window = {
+      --  completion =
+      --  {
+      --    scrollbar    = false,
+      --    winhighlight = winhighlight,
+      --  },
+      --  documentation = { winhighlight = winhighlight },
+      --}
       window = {
-        completion =
-        {
-          scrollbar    = false,
+        completion = { -- rounded border; thin-style scrollbar
+          border = "rounded",
+          scrollbar = "║",
           winhighlight = winhighlight,
         },
-        documentation = { winhighlight = winhighlight },
-      }
+        documentation = {
+          border = "rounded",
+          scrollbar = "║",
+          winhighlight = winhighlight,
+        },
+      },
     }
 
     -- Set configuration for git
@@ -145,7 +157,12 @@ return {
 
     -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
     cmp.setup.cmdline(":", {
-      mapping = cmp.mapping.preset.cmdline(),
+      --[[ mapping = cmp.mapping.preset.cmdline(), ]]
+      mapping = {
+        ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
+        ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
+      },
       sources = cmp.config.sources({
         { name = "path" }
       }, {

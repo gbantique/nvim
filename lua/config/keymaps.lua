@@ -76,6 +76,7 @@ keymap({ "n", "i" }, "<C-l>", "<C-w>l", { silent = true, desc = "Go to right win
 
 -- Toggle visibility of nvim tree
 keymap("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { silent = true, desc = "toggle neovim tree" })
+keymap("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { silent = true, desc = "toggle neovim tree" })
 
 -- Resize
 keymap("n", "<C-Up>", ":resize +2<CR>", { silent = true, desc = "Increase window height" })
