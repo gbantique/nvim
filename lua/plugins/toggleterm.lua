@@ -13,12 +13,12 @@ return {
       start_in_insert = true,
       insert_mappings = true,
       persist_size = true,
-      direction = "horizontal",
+      direction = "float",
       close_on_exit = true,
       shell = vim.o.shell,
       float_opts = {
         border = "single",
-        winblend = 0,
+        winblend = 3,
         highlights = {
           border = "Normal",
           background = "Normal",
@@ -56,7 +56,7 @@ return {
     function _PYTHON_TOGGLE()
       python:toggle()
     end
-    
+
     local lua = Terminal:new({ cmd = "lua", hidden = true })
 
     function _LUA_TOGGLE()

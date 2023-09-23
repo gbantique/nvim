@@ -17,8 +17,9 @@ keymap("n", "<C-s>", ":w<CR>", { silent = true, desc = "save file" })
 keymap("i", "<C-s>", "<ESC> :w<CR>", { silent = true, desc = "exit insert and save" })
 
 -- Save all and quit by Ctrl-q
-keymap("n", "<C-q>", ":wqa<CR>", { silent = true, desc = "save and quit" })
-keymap({ "i", "v", "x" }, "<C-q>", "<ESC> :wqa<CR>", { silent = true, desc = "escape and quit" })
+keymap("n", "<C-q>", ":qa<CR>", { silent = true, desc = "quit" })
+keymap("n", "<C-Q>", ":qa!<CR>", { silent = true, desc = "forced quit" })
+keymap({ "i", "v", "x" }, "<C-q>", "<ESC> :qa<CR>", { silent = true, desc = "escape and quit" })
 
 -- Close buffer by Ctrl-x
 keymap(
@@ -75,7 +76,7 @@ keymap({ "n", "i" }, "<C-k>", "<C-w>k", { silent = true, desc = "Go to upper win
 keymap({ "n", "i" }, "<C-l>", "<C-w>l", { silent = true, desc = "Go to right window" })
 
 -- Toggle visibility of nvim tree
-keymap("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { silent = true, desc = "toggle neovim tree" })
+keymap("n", "<C-e>", "<cmd>NvimTreeToggle<CR>", { silent = true, desc = "toggle neovim tree" })
 keymap("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { silent = true, desc = "toggle neovim tree" })
 
 -- Resize

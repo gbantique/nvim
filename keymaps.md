@@ -2,6 +2,11 @@
 
 There are several files relate to keymaps.
 
+## Personal Configuration
+<S-u> or <U> to undo
+
+
+
 ## WhichKey
 
 [WhichKey](https://github.com/folke/which-key.nvim) is a plugin for Neovim that displays a popup with possible key bindings of the command you started typing.
