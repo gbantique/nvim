@@ -21,6 +21,10 @@ keymap("n", "<C-q>", ":qa<CR>", { silent = true, desc = "quit" })
 keymap("n", "<C-Q>", ":qa!<CR>", { silent = true, desc = "forced quit" })
 keymap({ "i", "v", "x" }, "<C-q>", "<ESC> :qa<CR>", { silent = true, desc = "escape and quit" })
 
+
+
+
+
 -- Close buffer by Ctrl-x
 keymap(
   "n",

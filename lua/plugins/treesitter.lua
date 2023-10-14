@@ -1,8 +1,11 @@
 return {
   "nvim-treesitter/nvim-treesitter",
+  event = { "BufReadPre", "BufNewFile" },
   build = ":TSUpdate",
   dependencies = {
     "JoosepAlviste/nvim-ts-context-commentstring",
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    "windwp/nvim-ts-autotag",
   },
   config = function()
     local configs = require("nvim-treesitter.configs")
@@ -51,6 +54,15 @@ return {
         additional_vim_regex_highlighting = true,
       },
       indent = { enable = true, disable = { "yaml" } },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<C-space>",
+          node_incremental = "<C-space>",
+          scope_incremental = false,
+          node_decremental = "<bs>",
+        },
+      },
       context_commentstring = {
         enable = true,
         enable_autocmd = false,
