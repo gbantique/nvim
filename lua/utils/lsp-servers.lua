@@ -18,7 +18,7 @@ M.all_servers = {
 
 M.regular_servers = {
   --[[ "prosemd_lsp", ]]
-  "cssls",
+  --[[ "cssls", ]]
   "vuels",
   "tsserver",
   --[[ "texlab", ]]

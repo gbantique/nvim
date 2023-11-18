@@ -5,8 +5,40 @@ local lsp_servers = require("utils.lsp-servers")
 local on_attach = require("plugins.lsp.handlers").on_attach
 local capabilities = require("plugins.lsp.handlers").capabilities
 
+
+lspconfig.html.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = {
+    "html",
+    "javascript",
+    "css"
+  },
+  init_options = {
+    embeddedLanguages = { css = true, javascript = true },
+    configurationSection = { "html", "css", "javascript" },
+  }
+})
+
+
+lspconfig.cssls.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = {
+    "css",
+    "scss",
+    "less"
+  },
+  settings = {
+    css = { validate = true },
+    scss = { validate = true },
+    less = { validate = true }
+  },
+})
+
+
 lspconfig.emmet_ls.setup({
-  -- on_attach = on_attach,
+  on_attach = on_attach,
   capabilities = capabilities,
   filetypes = {
     "astro",
