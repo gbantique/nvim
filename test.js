@@ -6,4 +6,6 @@ alertUser("This is it.");
 
 let fname = 'George';
 
+let isTrue = true;
+
 

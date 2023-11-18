@@ -28,13 +28,13 @@ keymap({ "i", "v", "x" }, "<C-q>", "<ESC> :qa<CR>", { silent = true, desc = "esc
 -- Close buffer by Ctrl-x
 keymap(
   "n",
-  "<C-x>",
+  "<C-c>",
   "<cmd>w!<CR> <cmd>bp<bar>sp<bar>bn<bar>bd<CR>",
   { silent = true, desc = "save and close buffer" }
 )
 keymap(
   "i",
-  "<C-x>",
+  "<C-c>",
   "<ESC> <cmd>w!<CR> <cmd>bp<bar>sp<bar>bn<bar>bd<CR>",
   { silent = true, desc = "force save close buffer" }
 )
