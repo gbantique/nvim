@@ -11,7 +11,9 @@ return {
 
     local lsp_servers = require("utils.lsp-servers")
 
-    mason.setup()
+    mason.setup({
+      PATH = "prepend", -- "skip" seems to cause the spawning error
+    })
 
     mason_lspconfig.setup({
       ensure_installed = lsp_servers.all_servers, -- will be installed by mason

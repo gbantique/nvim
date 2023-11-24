@@ -3,8 +3,8 @@ return {
   config = function()
     require("boole").setup({
       mappings = {
-        increment = "<C-u>",
-        decrement = "<C-d>",
+        increment = "<C-a>",
+        decrement = "<C-x>",
       },
       -- User defined loops
       additions = {
