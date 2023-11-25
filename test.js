@@ -10,3 +10,5 @@ let isTrue = true;
 let num = 0;
 let days = 'Wednesday';
 
+console.log(days);
+
