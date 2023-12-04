@@ -116,7 +116,7 @@ return {
           "s",
         }),
       },
-  
+
       formatting = {
         fields = { "kind", "abbr", "menu" },
         max_width = 0,

@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string.h>
 
 void greet(std::string msg) {
   std::cout << msg;
@@ -13,7 +12,7 @@ int main() {
   // std::cout << "Hello, c++";
   greet("Hello! from c++ programming language.\n");
   greet("-------------------------------------\n");
-  greet("Hello");
+  greet("Hello\n");
   greeter("Hello", "Kyle");
   return 0;
 }
