@@ -12,3 +12,9 @@ let days = 'Wednesday';
 
 console.log(days);
 
+let x = 'hello';
+
+console.log(Object.getPrototypeOf(x));
+
+fname.big
+

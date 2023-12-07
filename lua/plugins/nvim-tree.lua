@@ -44,8 +44,8 @@ return {
         ignore = false,
       },
       filters = {
-        -- custom = { ".git" },
-        exclude = { ".gitignore", ".env" },
+        custom = { ".git", ".gitignore", "lazy-lock.json", "LICENSE" },
+        exclude = { ".env", },
       },
       actions = {
         open_file = {

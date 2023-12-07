@@ -2,7 +2,7 @@ return {
   "lukas-reineke/indent-blankline.nvim",
   --main = "ibl",
   config = function()
-    local highlight = {
+    --[[ local highlight = {
       "RainbowRed",
       "RainbowYellow",
       "RainbowBlue",
@@ -27,7 +27,7 @@ return {
     end)
 
     vim.g.rainbow_delimiters = { highlight = highlight }
-
+ ]]
     require("ibl").setup {
       scope = {
         show_start = true,
@@ -35,11 +35,11 @@ return {
       },
       indent = {
         char = "▏",
-        highlight = highlight,
+        --[[ highlight = highlight, ]]
       }
     }
 
-    hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+    --hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
 
     -- disable indentation on the first level
     --hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
