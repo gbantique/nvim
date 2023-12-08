@@ -9,7 +9,7 @@ return {
     -- snippets
     "L3MON4D3/LuaSnip",             --snippet engine
     "rafamadriz/friendly-snippets", -- a bunch of snippets to use
-    "rcarriga/cmp-dap",
+    --[[ "rcarriga/cmp-dap", ]]
   },
   config = function()
     local cmp = require("cmp")
@@ -60,7 +60,7 @@ return {
     cmp.setup {
       enabled = function()
         return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
-            or require("cmp_dap").is_dap_buffer()
+            --[[ or require("cmp_dap").is_dap_buffer() ]]
       end,
       view = {
         entries = "custom" -- can be "custom", "wildmenu" or "native"
@@ -191,10 +191,10 @@ return {
       })
     })
 
-    cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+    --[[ cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
       sources = {
         { name = "dap" },
       },
-    })
+    }) ]]
   end
 }

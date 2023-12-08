@@ -63,10 +63,11 @@ return {
           node_decremental = "<bs>",
         },
       },
-      context_commentstring = {
+      --[[ context_commentstring = {
         enable = true,
         enable_autocmd = false,
-      },
+      }, ]]
+
     }
   end
 }
