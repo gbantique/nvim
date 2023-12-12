@@ -3,13 +3,26 @@ return {
   dependencies = {
     "theHamsta/nvim-dap-virtual-text",
     "rcarriga/nvim-dap-ui",
+    "mxsdev/nvim-dap-vscode-js",
+    -- build debugger from source
+    {
+      "microsoft/vscode-js-debug",
+      version = "1.x",
+      build = "npm i && npm run compile vsDebugServerBundle && rm -rf out && mv dist out"
+    }
+  },
+  keys = {
+    -- normal mode is default
+    { "<leader>d", function() require "dap".toggle_breakpoint() end },
+    { "<leader>c", function() require "dap".continue() end },
+    { "<C-p>",     function() require "dap".step_over() end },
+    { "<C-i>",     function() require "dap".step_into() end },
+    { "<C-o>",     function() require "dap".step_out() end },
   },
   config = function()
     local dap = require("dap")
-
-    local dap_virtual_text_status = require("nvim-dap-virtual-text")
-
     local dapui = require("dapui")
+    local dap_virtual_text_status = require("nvim-dap-virtual-text")
 
     dap_virtual_text_status.setup({
       -- enable this plugin (the default)
@@ -44,16 +57,21 @@ return {
       -- e.g. 80 to position at column 80, see `:h nvim_buf_set_extmark()`
     })
 
+
+    -- setup js adapter
+    require("plugins.dap.adapter.js")
+
+    --[[ require("dapui").setup() ]]
     dapui.setup({
-      layouts = {
+      --[[  layouts = {
         {
-          elements = {
-            "watches",
-          },
+          --elements = {
+          --  "watches",
+          --},
           size = 0.2,
           position = "left",
         },
-      },
+      }, ]]
       controls = {
         enabled = false,
       },
@@ -70,6 +88,7 @@ return {
       },
     })
 
+
     local icons = require("config.icons")
     vim.api.nvim_set_hl(0, "DapStoppedLinehl", { bg = "#555530" })
     vim.fn.sign_define("DapBreakpoint", { text = icons.ui.TinyCircle,
@@ -83,19 +102,11 @@ return {
     vim.fn.sign_define("DapBreakpointRejected", { text = icons.diagnostics.Error,
       texthl = "Error", linehl = "", numhl = "" })
 
+
     dap.listeners.after.event_initialized["dapui_config"] = function()
-      dapui.open()
+      dapui.open({ reset = true })
     end
-    dap.listeners.before.event_terminated["dapui_config"] = function()
-      dapui.close()
-    end
-    dap.listeners.before.event_exited["dapui_config"] = function()
-      dapui.close()
-    end
-
-    require("plugins.daps.adapter.lldb")
-
-    require("plugins.daps.settings.cpp")
-    require("plugins.daps.settings.c")
+    dap.listeners.before.event_terminated["dapui_config"] = dapui.close
+    dap.listeners.before.event_exited["dapui_config"] = dapui.close
   end
 }
