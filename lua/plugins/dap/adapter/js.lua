@@ -1,48 +1,25 @@
 -- Configure Javascript Debugger
 require("dap-vscode-js").setup({
   debugger_path = vim.fn.stdpath("data") .. "/lazy/vscode-js-debug",
-  adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" },
+  adapters = {
+    "chrome",
+    "pwa-node",
+    "pwa-chrome",
+    "pwa-msedge",
+    "node-terminal",
+    "pwa-extensionHost"
+  },
 })
 
-for _, language in ipairs({ "typescript", "javascript", "svelte" }) do
+for _, language in ipairs({
+  "typescript",
+  "javascript",
+  "svelte",
+  "typescriptreact",
+  "javascriptreact",
+  "vue", }) do
   require("dap").configurations[language] = {
-    -- attach to a node process that has been started with
-    -- `--inspect` for longrunning tasks or `--inspect-brk` for short tasks
-    -- npm script -> `node --inspect-brk ./node_modules/.bin/vite dev`
-    {
-      -- use nvim-dap-vscode-js's pwa-node debug adapter
-      type = "pwa-node",
-      -- attach to an already running node process with --inspect flag
-      -- default port: 9222
-      request = "attach",
-      -- allows us to pick the process using a picker
-      processId = require "dap.utils".pick_process,
-      -- name of the debug action you have to select for this config
-      name = "Attach debugger to existing `node --inspect` process",
-      -- for compiled languages like TypeScript or Svelte.js
-      sourceMaps = true,
-      -- resolve source maps in nested locations while ignoring node_modules
-      resolveSourceMapLocations = {
-        "${workspaceFolder}/**",
-        "!**/node_modules/**" },
-      -- path to src in vite based projects (and most other projects as well)
-      cwd = "${workspaceFolder}/src",
-      -- we don't want to debug code inside node_modules, so skip it!
-      skipFiles = { "${workspaceFolder}/node_modules/**/*.js" },
-    },
-    {
-      type = "pwa-chrome",
-      name = "Launch Chrome to debug client",
-      request = "launch",
-      url = "http://localhost:5173",
-      sourceMaps = true,
-      protocol = "inspector",
-      port = 9222,
-      webRoot = "${workspaceFolder}/src",
-      -- skip files from vite's hmr
-      skipFiles = { "**/node_modules/**/*", "**/@vite/*", "**/src/client/*", "**/src/*" },
-    },
-    -- only if language is javascript, offer this debug action
+    --[[ -- only if language is javascript, offer this debug action
     language == "javascript" and {
       -- use nvim-dap-vscode-js's pwa-node debug adapter
       type = "pwa-node",
@@ -53,7 +30,61 @@ for _, language in ipairs({ "typescript", "javascript", "svelte" }) do
       -- launch current file
       program = "${file}",
       cwd = "${workspaceFolder}",
+    } or nil, ]]
+    language == "javascript" and
+    {
+      type = "pwa-node",
+      request = "launch",
+      name = "Launch file",
+      program = "${file}",
+      cwd = vim.fn.getcwd(),
+      sourceMaps = true,
     } or nil,
+    {
+      type = "pwa-node",
+      request = "attach",
+      name = "Attach debugger to existing `node --inspect` process",
+      processId = require("dap.utils").pick_process,
+      cwd = vim.fn.getcwd(), -- "${workspaceForlder}/src"
+      sourceMaps = true,
+      -- resolve source maps in nested locations while ignoring node_modules
+      resolveSourceMapLocations = {
+        "${workspaceFolder}/**",
+        "!**/node_modules/**" },
+      skipFiles = { "${workspaceFolder}/node_modules/**/*.js" },
+    },
+    -- Debug web applications (client side)
+    {
+      type = "pwa-chrome",
+      request = "launch",
+      name = "Launch Chrome to debug client",
+      url = function()
+        local co = coroutine.running()
+        return coroutine.create(function()
+          vim.ui.input({
+            prompt = "Enter URL: ",
+            default = "http://localhost:3000",
+          }, function(url)
+            if url == nil or url == "" then
+              return
+            else
+              coroutine.resume(co, url)
+            end
+          end)
+        end)
+      end,
+      webRoot = vim.fn.getcwd(), --"${workspace}/src"
+      protocol = "inspector",
+      sourceMaps = true,
+      userDataDir = false,
+      --skipFiles = { "**/node_modules/**/*", "**/@vite/*", "**/src/client/*", "**/src/*" },
+    },
+    -- Divider for the launch.json derived configs
+    {
+      name = "----- ↓ launch.json configs ↓ -----",
+      type = "",
+      request = "launch",
+    },
   }
 end
 
