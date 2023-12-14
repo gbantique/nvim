@@ -55,12 +55,12 @@ keymap("i", "kj", "<ESC>", { silent = true, desc = "exit insert mode" })
 
 ------------------------ Normal Mode -----------------------------------------
 -- Debug
-keymap({ "n", "t" }, "<A-o>", function() require "dap".step_out() end, { silent = true, desc = "step out" })
-keymap({ "n", "t" }, "<A-i>", function() require "dap".step_into() end, { silent = true, desc = "step into" })
-keymap({ "n", "t" }, "<A-j>", function() require "dap".step_over() end, { silent = true, desc = "step over" })
-keymap({ "n", "t" }, "<A-h>", function() require "dap".continue() end, { silent = true, desc = "continue" })
-keymap({ "n", "t" }, "<A-k>", function() require("dap.ui.widgets").hover() end, { silent = true, desc = "caculate expr" })
-keymap("n", "<F5>", function() require "dap".toggle_breakpoint() end, { silent = true, desc = "toggle breakpoint" })
+--keymap({ "n", "t" }, "<A-o>", function() require "dap".step_out() end, { silent = true, desc = "step out" })
+--keymap({ "n", "t" }, "<A-i>", function() require "dap".step_into() end, { silent = true, desc = "step into" })
+--keymap({ "n", "t" }, "<A-j>", function() require "dap".step_over() end, { silent = true, desc = "step over" })
+--keymap({ "n", "t" }, "<A-h>", function() require "dap".continue() end, { silent = true, desc = "continue" })
+--keymap({ "n", "t" }, "<A-k>", function() require("dap.ui.widgets").hover() end, { silent = true, desc = "caculate expr" })
+--keymap("n", "<F5>", function() require "dap".toggle_breakpoint() end, { silent = true, desc = "toggle breakpoint" })
 
 -- Redo
 keymap("n", "U", "<C-r>", { silent = true, desc = "Redo" })
@@ -142,9 +142,23 @@ keymap("n", "<leader>cs", "<cmd>CMakeStop<CR>", { desc = "Stop CMake Process" })
 keymap("n", "<leader>cp", "<cmd>cd %:p:h<CR> ", { desc = "Change pwd to current file" })
 
 -- debug
-keymap("n", "<leader>dt", "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", { desc = "Toggle Condition Breakpoint" })
-keymap("n", "<leader>dk", "<cmd>lua require'dap'.up()<CR>", { desc = "Stack up" })
-keymap("n", "<leader>dj", "<cmd>lua require'dap'.down()<CR>", { desc = "Stack down" })
+keymap(
+  "n",
+  "<leader>dt",
+  function() require "dap".toggle_breakpoint() end,
+  { silent = true, desc = "Toggle Breakpoint" })
+keymap(
+  "n",
+  "<leader>dT",
+  "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
+  { desc = "Toggle Condition Breakpoint" })
+keymap("n", "<leader>dc", "<cmd>lua require'dap'.continue()<CR>", { desc = "Continue" })
+keymap("n", "<leader>dj", "<cmd>lua require'dap'.step_over()<CR>", { desc = "Step Over/Jump" })
+keymap("n", "<leader>di", "<cmd>lua require'dap'.step_into<CR>", { desc = "Step Into" })
+keymap("n", "<leader>do", "<cmd>lua require'dap'.step_out()<CR>", { desc = "Step Out" })
+
+keymap("n", "<leader>du", "<cmd>lua require'dap'.up()<CR>", { desc = "Stack up" })
+keymap("n", "<leader>dd", "<cmd>lua require'dap'.down()<CR>", { desc = "Stack down" })
 keymap("n", "<leader>dn", "<cmd>lua require'dap'.run_to_cursor()<CR>", { desc = "Run To Cursor" })
 keymap("n", "<leader>dq", "<cmd>lua require'dap'.terminate()<CR>", { desc = "Terminate" })
 --[[ .exit               Closes the REPL ]]

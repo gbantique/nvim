@@ -15,14 +15,14 @@ return {
       build = "./install.sh",
     },
   },
-  keys = {
+  --[[ keys = {
     -- normal mode is default
     { "<leader>d", function() require "dap".toggle_breakpoint() end },
     { "<leader>c", function() require "dap".continue() end },
     { "<C-p>",     function() require "dap".step_over() end },
     { "<C-i>",     function() require "dap".step_into() end },
     { "<C-o>",     function() require "dap".step_out() end },
-  },
+  }, ]]
   config = function()
     local dap = require("dap")
     local dapui = require("dapui")
@@ -95,14 +95,19 @@ return {
 
     local icons = require("config.icons")
     vim.api.nvim_set_hl(0, "DapStoppedLinehl", { bg = "#555530" })
-    vim.fn.sign_define("DapBreakpoint", { text = icons.ui.TinyCircle,
+
+    vim.fn.sign_define("DapBreakpoint", { text = icons.ui.BigCircle,
       texthl = "DapBreakpoint", linehl = "", numhl = "" })
+
     vim.fn.sign_define("DapBreakpointCondition", { text = icons.ui.CircleWithGap,
       texthl = "DapBreakpointCondition", linehl = "", numhl = "" })
+
     vim.fn.sign_define("DapLogPoint", { text = icons.ui.LogPoint, texthl = "DapLogPoint",
       linehl = "", numhl = "" })
+
     vim.fn.sign_define("DapStopped", { text = icons.ui.ChevronRight, texthl = "Error",
       linehl = "DapStoppedLinehl", numhl = "" })
+
     vim.fn.sign_define("DapBreakpointRejected", { text = icons.diagnostics.Error,
       texthl = "Error", linehl = "", numhl = "" })
 
