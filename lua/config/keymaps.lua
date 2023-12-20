@@ -254,6 +254,10 @@ keymap("n", "<leader>tl", "<cmd>lua _LUA_TOGGLE()<CR>", { desc = "Lua" })
 keymap("n", "<leader>tf", "<cmd>ToggleTerm direction=float<CR>", { desc = "Float" })
 keymap("n", "<leader>th", "<cmd>ToggleTerm size=10 direction=horizontal<CR>", { desc = "Horizontal" })
 keymap("n", "<leader>tv", "<cmd>ToggleTerm size=80 direction=vertical<CR>", { desc = "Vertical" })
+keymap("n", "<leader>t1", "<cmd>lua require('toggleterm').exec('', 1)<CR>", { desc = "Open terminal window 1" })
+keymap("n", "<leader>t2", "<cmd>lua require('toggleterm').exec('', 2)<CR>", { desc = "Open terminal window 2" })
+keymap("n", "<leader>t3", "<cmd>lua require('toggleterm').exec('', 3)<CR>", { desc = "Open terminal window 3" })
+
 
 keymap("n", "<leader>n", "<cmd>noh<CR>", { desc = "Clear highlight" })
 
