@@ -243,6 +243,7 @@ keymap("n", "<leader>mt", "<cmd>InsertToc<CR>", { desc = "Insert Tocs" })
 keymap("n", "<leader>rr", "<cmd>RunFile<CR>", { desc = "Run File" })
 keymap("n", "<leader>rp", "<cmd>RunProject<CR>", { desc = "Run Project" })
 keymap("n", "<leader>rc", "<cmd>RunClose<CR>", { desc = "Close" })
+keymap({ "v", "n" }, "<leader>rn", ":'<,'>w !node<CR>", { desc = "Node Run Selected" })
 
 -- terminal
 keymap("n", "<leader>tn", "<cmd>lua _NODE_TOGGLE()<CR>", { desc = "Node" })

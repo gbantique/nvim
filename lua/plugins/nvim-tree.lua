@@ -44,13 +44,13 @@ return {
         ignore = false,
       },
       filters = {
-        custom = { ".git", ".gitignore", "lazy-lock.json", "LICENSE" },
+        custom = { ".git", ".gitignore", "lazy-lock.json", "LICENSE", "*.mp4" },
         exclude = { ".env", },
       },
       actions = {
         open_file = {
           resize_window = true,
-          quit_on_open = true,
+          quit_on_open = false,
         },
       },
       view = {

@@ -6,9 +6,13 @@ local on_attach = require("plugins.lsp.handlers").on_attach
 local capabilities = require("plugins.lsp.handlers").capabilities
 
 
+--Enable (broadcasting) snippet capability for completion
+local htmlCapabilities = vim.lsp.protocol.make_client_capabilities()
+htmlCapabilities.textDocument.completion.completionItem.snippetSupport = true
+
 lspconfig.html.setup({
   on_attach = on_attach,
-  capabilities = capabilities,
+  capabilities = htmlCapabilities,--capabilities,
   filetypes = {
     "html",
     "javascript",
@@ -24,6 +28,7 @@ lspconfig.html.setup({
 lspconfig.cssls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
+  cmd = { "vscode-css-language-server", "--stdio" },
   filetypes = {
     "css",
     "scss",

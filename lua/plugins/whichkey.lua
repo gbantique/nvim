@@ -133,7 +133,7 @@ return {
       },
     })
     which_key.register({
-      mode = { "n" },
+      mode = { "n", "v" },
       ["<leader>b"] = { name = "+buffers" },
       ["<leader>c"] = { name = "+cmake" },
       ["<leader>d"] = { name = "+debug" },
