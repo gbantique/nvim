@@ -36,7 +36,7 @@ return {
           "--smart-case",
         },
         prompt_prefix = icons.ui.Telescope,
-        selection_caret = icons.ui.Fire,
+        selection_caret = icons.ui.Run,--Fire,
         path_display = { "truncate" },
         winblend = 0,
         color_devicons = true,

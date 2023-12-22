@@ -142,6 +142,7 @@ return {
       ["<leader>h"] = { name = "+hop" },
       ["<leader>l"] = { name = "+lsp" },
       ["<leader>m"] = { name = "+markdown" },
+      ["<leader>p"] = { name = "+personal" },
       ["<leader>r"] = { name = "+code_runner" },
       ["<leader>t"] = { name = "+terminal" },
     })
