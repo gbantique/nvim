@@ -20,24 +20,25 @@ function compile_curr_file()
   print("Compiling " .. filename .. " ...")
 end
 
+
 vim.keymap.set(
   "n",
-  "<leader>pc",
+  "<leader>pcc",
   "<cmd>lua compile_curr_file()<CR>",
   { desc = "Compile ts file", noremap = true, silent = true }
 )
 
--- Press <F12> to toggle the terminal and execute a command
---vim.api.nvim_set_keymap('n', '<F12>', [[:ToggleTerm<CR>:exec "term://your_command"<CR>]], { noremap = true, silent = true })
---keymap("n", "<leader>t3", "<cmd>lua require('toggleterm').exec('', 3)<CR>", { desc = "Open terminal window 3" })
-local current_file = vim.fn.expand("%:p")
-function GetCurrentFileName()
-  return vim.fn.expand("%:p")
-end
 vim.keymap.set(
   "n",
-  "<leader>pw",
-  ":lua require('toggleterm').exec('tsc ' .. GetCurrentFileName() .. ' -w', 4)<CR>",
+  "<leader>pct",
+  ":lua require('toggleterm').exec('tsc', 4)<CR>",
+  { desc = "Compile according to tsconfig", noremap = true, silent = true }
+)
+
+vim.keymap.set(
+  "n",
+  "<leader>pcw",
+  ":lua require('toggleterm').exec('tsc ' .. vim.fn.expand('%p') .. ' -w', 4)<CR>",
   { desc = "Compile ts file and watched", noremap = true, silent = true }
 )
 

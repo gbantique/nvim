@@ -20,7 +20,7 @@ M.regular_servers = {
   --[[ "prosemd_lsp", ]]
   --[[ "cssls", ]]
   "vuels",
-  "tsserver",
+  --"tsserver",
   --[[ "texlab", ]]
   "angularls",
   "eslint",

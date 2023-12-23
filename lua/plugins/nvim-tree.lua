@@ -32,6 +32,7 @@ return {
       on_attach = my_on_attach,
       sort_by = "case_sensitive",
       auto_reload_on_write = true,
+      sync_root_with_cwd = false,
       disable_netrw = true,
       open_on_tab = false,
       update_cwd = true,

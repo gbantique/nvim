@@ -308,6 +308,7 @@ keymap("t", "<A-z>", [[<C-\><C-n>]], { silent = true })
 
 ---------------------------------- Personal Custom -------------------------
 keymap("n", "<leader>pn", "<cmd>set rnu! rnu?<cr>", { desc = "Toggle Line Numbering" })
+keymap("n", "<leader>pl", "<cmd>term live-server<cr>", { desc = "Run Live Server" })
 
 
 
